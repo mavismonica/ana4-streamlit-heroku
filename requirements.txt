@@ -1,0 +1,15 @@
+streamlit
+tensorflow
+keras
+cv2
+PIL
+numpy
+pandas
+seaborn
+sklearn
+loguru
+pickle
+random
+tqdm
+matplotlib
+os
