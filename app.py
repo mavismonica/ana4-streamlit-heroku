@@ -28,6 +28,7 @@ file = st.file_uploader("Please upload an grocery item image", type =["jpg","png
 import cv2
 from PIL import Image, ImageOps
 import numpy as np
+st.set_option('deprecation.showfileUploaderEncoding', False)
 def import_and_predict(image_data, model):
     size =(250,250)
     image = ImageOps.fit(image_data,size, Image.ANTIALIAS)
