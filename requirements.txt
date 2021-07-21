@@ -5,7 +5,4 @@ opencv-python-headless>=4.2.0.32
 numpy
 pandas
 sklearn
-loguru
-pickle
-random
-os
+
