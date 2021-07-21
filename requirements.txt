@@ -2,14 +2,10 @@ streamlit
 tensorflow-cpu>=1.15
 keras
 opencv-python-headless>=4.2.0.32
-PIL
 numpy
 pandas
-seaborn
 sklearn
 loguru
 pickle
 random
-tqdm
-matplotlib
 os
