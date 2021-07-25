@@ -5,7 +5,7 @@ import streamlit as st
 #def load_model():
  #
 #   return model
-with st.spinner('Model is being loaded..'):
+# with st.spinner('Model is being loaded..'):
 #   model=load_model()
   model=tf.keras.models.load_model('VGG_model.hdf5')
 
