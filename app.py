@@ -7,7 +7,7 @@ import streamlit as st
 #   return model
 # with st.spinner('Model is being loaded..'):
 #   model=load_model()
-  model=tf.keras.models.load_model('VGG_model.hdf5')
+model=tf.keras.models.load_model('VGG_model.hdf5')
 
 st.write("""
          # Grocery Classification
