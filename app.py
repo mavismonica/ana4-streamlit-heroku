@@ -30,7 +30,7 @@ from PIL import Image, ImageOps
 import numpy as np
 st.set_option('deprecation.showfileUploaderEncoding', False)
 def import_and_predict(image_data, model):
-    size =(250,250)
+    size =(256,256)
     image = ImageOps.fit(image_data,size, Image.ANTIALIAS)
     img = np.asarray(image)
     img_reshape = img[np.newaxis,...]
