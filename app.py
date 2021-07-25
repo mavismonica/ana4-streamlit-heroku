@@ -1,51 +1,45 @@
 import streamlit as st
 import tensorflow as tf
-from keras.models import load_model
-# st.set_option('deprecation.showfileUploaderEncoding',False)
-# @st.cache(allow_output_mutation=True)
-# def load_model():
-#     #from keras.models import load_model
-# #     model = tf.keras.model.load_model('C:/Users/mavis/Documents/ana4/trained_VGG_model.h5')
-#     model = tf.keras.model.load_model('C:/Users/mavis/Documents/ana4/trained_VGG_model.h5')
-#     return model
-
-# model = load_model()
-# model = load_model('C:/Users/mavis/Documents/ana4/trained_VGG_model.h5')
-
+import streamlit as st
 @st.cache(allow_output_mutation=True)
 def load_model():
   model=tf.keras.models.load_model('VGG_model.hdf5')
   return model
 with st.spinner('Model is being loaded..'):
   model=load_model()
-
-# model = load_model('VGG_model.hdf5')
-
 st.write("""
-# Grocery item classification
-""")
-file = st.file_uploader("Please upload an grocery item image", type =["jpg","png"])
+         # Grocery Classification
+         """
+         )
+file = st.file_uploader("Please upload an image", type=["jpg", "png"])
 import cv2
 from PIL import Image, ImageOps
 import numpy as np
 st.set_option('deprecation.showfileUploaderEncoding', False)
 def import_and_predict(image_data, model):
-    size =(256,256)
-    image = ImageOps.fit(image_data,size, Image.ANTIALIAS)
-    img = np.asarray(image)
-    img_reshape = img[np.newaxis,...]
-    prediction = model.predict(img_reshape)
-    
-    return prediction
-
+        size = (250,250)
+        image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+        image = np.asarray(image)
+        img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        img_resize = (cv2.resize(img, dsize=(250, 250),interpolation=cv2.INTER_CUBIC))/255.
+        img_reshape = img_resize[np.newaxis,...]
+        prediction = model.predict(img_reshape)
+        return prediction
 if file is None:
-    st.text("Please upload an image")
+    st.text("Please upload an image file")
 else:
     image = Image.open(file)
-    st.image(image, use_column_width = True)
-    predictions = import_and_predict(image,model)
     class_names = ['BEANS','CAKE','CANDY','CEREAL','CHIPS','CHOCOLATE','COFFEE','CORN','FISH','FLOUR','HONEY',
                     'JAM','JUICE','MILK','NUTS','OIL','PASTA','RICE','SODA','SPICES','SUGAR','TEA','TOMATO_SAUCE',
                     'VINEGAR','WATER']
-    string = "This image most likely is "+class_names[np.argmax(predictions)]
-    st.success(string)
+    st.image(image, use_column_width=True)
+    predictions = import_and_predict(image, model)
+    score = 100*np.max(predictions[0])
+    st.write(
+    "This image most likely belongs to {} with a {:.2f} percent."
+    .format(class_names[np.argmax(predictions[0])], (score))
+)
+    print(
+    "This image most likely belongs to {} with a {:.2f} percent."
+    .format(class_names[np.argmax(predictions[0])], (score))
+)
