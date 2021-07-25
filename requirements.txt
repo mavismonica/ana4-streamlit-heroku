@@ -1,8 +1,9 @@
-streamlit
-tensorflow-cpu>=1.15
-keras
+streamlit==0.84.2
+tensorflow-cpu==2.5.0
+keras==2.4.3
 opencv-python-headless>=4.2.0.32
-numpy
-pandas
-sklearn
+numpy==1.18.5
+pandas==1.2.4
+scikit-learn==0.24.1
+
 
